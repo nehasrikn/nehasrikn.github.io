@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://nehasrikn.github.io/sitemap.xml
