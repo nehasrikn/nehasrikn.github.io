@@ -1,1189 +1,551 @@
-<!DOCTYPE html><html lang="en-us" >
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDR9HMJWGQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<!-- ============================================================
+  HOW TO UPDATE THIS SITE (everything lives in this one file)
 
-    gtag('config', 'G-JDR9HMJWGQ');
-  </script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  
-  
-  
-    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  1. BIO        → edit the paragraphs inside <section id="about">
+  2. NEWS       → add a line to the NEWS list at the bottom of
+                  this file (look for "EDIT YOUR CONTENT HERE")
+  3. PAPERS     → add an entry to the PUBLICATIONS list, same place
+  4. INTERNSHIPS→ add an entry to the INDUSTRY list, same place
+  5. PHOTO      → put a photo named "photo.jpg" next to this file
+                  and change the <img src="..."> in the header
+  6. Commit + push to your nehasrikn.github.io repo. Done.
+============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Neha Srikanth — PhD student in Computer Science at the University of Maryland, College Park.">
+<title>Neha Srikanth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  
-      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
-    
-  
+<style>
+  :root {
+    --ink: #22252b;          /* main text */
+    --muted: #6d7280;        /* dates, venues */
+    --accent: #a6192e;       /* links (UMD-ish crimson) */
+    --accent-dark: #7c1322;
+    --rule: #e7e5e1;         /* borders */
+    --soft: #faf9f7;         /* news box background */
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
 
-  <meta name="author" content="Neha Srikanth" />
-  
-  <meta name="description" content="PhD Student" />
+  * { box-sizing: border-box; }
 
-  
-  <link rel="alternate" hreflang="en-us" href="https://nehasrikn.github.io/" />
+  html { scroll-behavior: smooth; }
 
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: #ffffff;
+  }
 
-    <meta name="theme-color" content="#707070" />
-  
+  section { scroll-margin-top: 1.25rem; }
 
-  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+  .page {
+    max-width: 57rem;
+    margin: 0 auto;
+    padding: 2.25rem 1.25rem 2rem;
+  }
 
-  
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
-    
+  /* ---------- top nav ---------- */
+  .top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.75rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.92rem;
+  }
+  .top-nav a { color: var(--ink); }
+  .top-nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
 
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
-        
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 
-  
-  <link rel="stylesheet" href="/css/wowchemy.26ba8e5831a0f01ce47d8f089beb9c7a.css" />
+  /* ---------- header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2.75rem;
+  }
 
-  
+  header img {
+    width: 138px;
+    height: 138px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
 
-  
-  
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2.1rem;
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.01em;
+  }
 
-  
-    <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Neha Srikanth" />
-  
+  .tagline {
+    color: var(--muted);
+    margin: 0 0 0.85rem;
+  }
+  .tagline a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); }
+  .tagline a:hover { color: var(--accent); }
 
-  
-    <link rel="manifest" href="/manifest.webmanifest" />
-  
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .links a {
+    font-size: 0.85rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.15rem 0.75rem;
+    color: var(--ink);
+    transition: border-color 120ms, color 120ms;
+  }
+  .links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
 
-  <link rel="icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_180x180_fill_lanczos_center_3.png" />
+  /* ---------- sections ---------- */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
 
-  <link rel="canonical" href="https://nehasrikn.github.io/" />
+  #about p { margin: 0 0 1rem; }
+  #about p:last-child { margin-bottom: 0; }
 
-  
+  /* ---------- intro row: bio left, news right ---------- */
+  .intro-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+  .intro-row #about { flex: 1 1 52%; }
+  .intro-row #news { flex: 1 1 48%; min-width: 0; }
+  .intro-row h2 { margin-top: 0; }
 
-    
-  
-  <meta property="twitter:card" content="summary" />
-  
-  <meta property="og:site_name" content="Neha Srikanth" />
-  <meta property="og:url" content="https://nehasrikn.github.io/" />
-  <meta property="og:title" content="Neha Srikanth" />
-  <meta property="og:description" content="PhD Student" /><meta property="og:image" content="https://nehasrikn.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://nehasrikn.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
-  
-    
-      <meta property="og:updated_time" content="2022-05-01T00:00:00&#43;00:00" />
-    
-  
+  /* ---------- news ---------- */
+  .news-box {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--soft);
+    max-height: 21rem;
+    overflow-y: auto;
+    padding: 0.35rem 1.1rem;
+  }
+  .news-item {
+    display: flex;
+    gap: 1.1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.95rem;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date {
+    flex: 0 0 3.6rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.1rem;
+  }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://nehasrikn.github.io/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "url": "https://nehasrikn.github.io/"
-}
-</script>
+  /* ---------- publications ---------- */
+  .pub {
+    margin-bottom: 1.6rem;
+  }
+  .pub-title {
+    font-weight: 600;
+    margin: 0;
+  }
+  .pub-authors {
+    margin: 0.1rem 0 0;
+    font-size: 0.95rem;
+  }
+  .pub-venue {
+    margin: 0.1rem 0 0.45rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .venue-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+    margin-right: 0.35rem;
+  }
+  .award {
+    font-style: normal;
+    color: #4d3d05;
+    background: #fdf3b0;
+    padding: 0.05rem 0.45rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .pub-links a {
+    font-size: 0.78rem;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 0.05rem 0.55rem;
+    transition: background 120ms, color 120ms, border-color 120ms;
+  }
+  .pub-links a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
 
+  /* ---------- industry research ---------- */
+  .role {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .role-title { font-weight: 600; margin: 0; }
+  .role-icon {
+    width: 17px;
+    height: 17px;
+    vertical-align: -3px;
+    margin-right: 0.45rem;
+    border-radius: 3px;
+  }
+  .role-icon {
+    width: 17px;
+    height: 17px;
+    vertical-align: -3px;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+  }
+  .role-detail { margin: 0.1rem 0 0; font-size: 0.95rem; }
+  .role-date {
+    color: var(--muted);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+  }
 
-  
+  /* ---------- footer ---------- */
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
 
+  /* ---------- mobile ---------- */
+  @media (max-width: 760px) {
+    .intro-row { flex-direction: column; gap: 0; }
+    .intro-row h2 { margin-top: 2.5rem; }
+    .intro-row #news { width: 100%; }
+  }
 
-  <title>Neha Srikanth</title>
+  @media (max-width: 560px) {
+    header { flex-direction: column; text-align: center; gap: 1.25rem; }
+    .links { justify-content: center; }
+    .news-item { flex-direction: column; gap: 0.1rem; }
+    .news-date { flex-basis: auto; }
+    .role { flex-direction: column; gap: 0.1rem; }
+    .role-date { padding-top: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
 </head>
+<body>
+<div class="page">
 
-
-<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class="page-wrapper   "  >
-
-  
-  
-  <script src="/js/wowchemy-init.min.8f76bdc9e086322ed5147724ebba3d06.js"></script>
-
-  
-
-
-<aside class="search-modal" id="search">
-  <div class="container">
-    <section class="search-header">
-
-      <div class="row no-gutters justify-content-between mb-3">
-        <div class="col-6">
-          <h1>Search</h1>
-        </div>
-        <div class="col-6 col-search-close">
-          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
-        </div>
-      </div>
-
-      <div id="search-box">
-        
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
-        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
-        aria-label="Search...">
-        
-      </div>
-
-      
-    
-
-    </section>
-    <section class="section-search-results">
-
-      <div id="search-hits">
-        
-      </div>
-
-    </section>
-  </div>
-</aside>
-
-
-
-  <div class="page-header">
-    
-
-
-
-
-
-<header class="header--fixed">
-  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
-    <div class="container-xl">
-
-      
-      <div class="d-none d-lg-inline-flex">
-        <a class="navbar-brand" href="/">Neha Srikanth</a>
-      </div>
-      
-
-      
-      <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-      <span><i class="fas fa-bars"></i></span>
-      </button>
-      
-
-      
-      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-        <a class="navbar-brand" href="/">Neha Srikanth</a>
-      </div>
-      
-
-      
-      
-      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
-
-        
-        <ul class="navbar-nav d-md-inline-flex">
-          
-
-          
-
-          
-
-          <li class="nav-item">
-            <a class="nav-link " href="/#about" data-target="#about"><span>Home</span></a>
-          </li>
-
-          
-          
-
-          <li class="nav-item">
-            <a class="nav-link " href="/#publications" data-target="#publications"><span>Publications</span></a>
-          </li>
-
-          
-
-          <li class="nav-item">
-            <a class="nav-link " href="/#contact" data-target="#contact"><span>Contact</span></a>
-          </li>
-
-     
-        </ul>
-      </div>
-
-      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
-
-
-        
-        
-        <li class="nav-item dropdown theme-dropdown">
-          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
-            <i class="fas fa-moon" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item js-set-theme-light">
-              <span>Light</span>
-            </a>
-            <a href="#" class="dropdown-item js-set-theme-dark">
-              <span>Dark</span>
-            </a>
-            <a href="#" class="dropdown-item js-set-theme-auto">
-              <span>Automatic</span>
-            </a>
-          </div>
-        </li>
-        
-
-        
-        
-
-      </ul>
-
-    </div>
+  <!-- ==================== SECTION SHORTCUTS ==================== -->
+  <nav class="top-nav" aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#news">News</a>
+    <a href="#publications">Publications</a>
+    <a href="#industry">Industry Research</a>
   </nav>
-</header>
 
-
-  </div>
-
-  <div class="page-body">
-    
-
-
-  
-<span class="js-widget-page d-none"></span>
-
-
-  
-  <section id="about" class="home-section wg-about  ", style="padding-bottom: 20px;">
-   <div class="home-section-bg " >
-     
-   </div>
-    <div class="container">
-
-    
-
-<div class="row">
-  <div class="col-12 col-lg-4">
-    <div id="profile">
-
-      
-      
-      <img class="avatar avatar-circle"
-           width="270" height="270"
-           src="/authors/neha/avatar_1_hu9aef00f1e61a813bb0bc9512366319ec_362471_270x270_fill_q75_lanczos_center.jpg" alt="Neha Srikanth">
-      
-
-      <div class="portrait-title">
-        
-        <h2>Neha Srikanth</h2>
-        
-        <h3>PhD Student</h3>
-
-        
-        <h3>
-          <a href="https://www.cs.umd.edu/" target="_blank" rel="noopener">
-          <span>University of Maryland, College Park</span>
-          </a>
-        </h3>
-        
-      </div>
-
-      <ul class="network-icon" aria-hidden="true">
-        
-        
-        
-        
-        <li>
-          <a href="mailto:nehasrik@umd.edu"  aria-label="envelope">
-            <i class="fas fa-envelope big-icon"></i>
-          </a>
-        </li>
-        
-        
-        
-        
-        <li>
-          <a href="https://twitter.com/nehasrikanth" target="_blank" rel="noopener" aria-label="twitter">
-            <i class="fab fa-twitter big-icon"></i>
-          </a>
-        </li>
-        
-        
-        
-        
-        <li>
-          <a href="https://scholar.google.com/citations?user=ZQwwr8cAAAAJ&amp;hl=en&amp;authuser=1" target="_blank" rel="noopener" aria-label="graduation-cap">
-            <i class="fas fa-graduation-cap big-icon"></i>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://github.com/nehasrikn" target="_blank" rel="noopener" aria-label="github">
-            <i class="fab fa-github big-icon"></i>
-          </a>
-        </li>
-        
-          
-        
-        <li>
-          <a href="https://www.linkedin.com/in/nehasrik/" target="_blank" rel="noopener" aria-label="linkedin">
-            <i class="fab fa-linkedin big-icon"></i>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://drive.google.com/file/d/1u5LSHnLiCrgFt5oBMAZiq73ZK_U8OB5-/view?usp=sharing" target="_blank" rel="noopener" aria-label="cv">
-            <i class="ai ai-cv big-icon"></i>
-          </a>
-        </li>
-        
-      </ul>
-
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <!-- Replace src with "photo.jpg" once you add your own photo to the repo -->
+    <img src="https://nehasrikn.github.io/authors/neha/avatar_1_hu9aef00f1e61a813bb0bc9512366319ec_362471_270x270_fill_q75_lanczos_center.jpg" alt="Photo of Neha Srikanth">
+    <div>
+      <h1>Neha Srikanth</h1>
+      <p class="tagline">PhD Student, <a href="https://www.cs.umd.edu/">Computer Science</a>, University of Maryland, College Park</p>
+      <nav class="links" aria-label="Profile links">
+        <a href="mailto:nehasrik@umd.edu">Email</a>
+        <a href="https://drive.google.com/file/d/1u5LSHnLiCrgFt5oBMAZiq73ZK_U8OB5-/view?usp=sharing">CV</a>
+        <a href="https://scholar.google.com/citations?user=ZQwwr8cAAAAJ&hl=en&authuser=1">Google Scholar</a>
+        <a href="https://github.com/nehasrikn">GitHub</a>
+        <a href="https://twitter.com/nehasrikanth">Twitter</a>
+        <a href="https://www.linkedin.com/in/nehasrik/">LinkedIn</a>
+      </nav>
     </div>
-  </div>
-  <div class="col-12 col-lg-8">
+  </header>
 
-    
-    
+  <!-- ==================== INTRO ROW: bio on the left, news on the right ==================== -->
+  <div class="intro-row">
 
-    <div class="article-style">
-      <p>Hi there 👋! I&rsquo;m a PhD student in the <a href="https://www.cs.umd.edu/" target="_blank" rel="noopener">Department of Computer Science</a> at the <a href="https://umd.edu/" target="_blank" rel="noopener">University of Maryland, College Park</a> where I work with Profs. <a href="https://rudinger.github.io/" target="_blank" rel="noopener">Rachel Rudinger</a> and <a href="http://users.umiacs.umd.edu/~jbg/" target="_blank" rel="noopener">Jordan Boyd-Graber</a>.</p>
-<p>I&rsquo;m a member of the <a href="https://wiki.umiacs.umd.edu/clip/index.php/Main_Page" target="_blank" rel="noopener">Computational Linguistics and Information Processing (CLIP)</a> Lab in <a href="https://www.umiacs.umd.edu/" target="_blank" rel="noopener">UMIACS</a>.</p>
-<p>Before coming to Maryland, I worked as a Machine Learning Engineer at <a href="https://www.lyft.com/" target="_blank" rel="noopener">Lyft</a> on the Applied Machine Learning team, and before that, I received my Bachelor&rsquo;s and Master&rsquo;s degrees in <a href="https://www.cs.utexas.edu/" target="_blank" rel="noopener">Computer Science</a> from the <a href="https://www.utexas.edu/" target="_blank" rel="noopener">University of Texas at Austin</a>, where I was working with <a href="https://jessyli.com/" target="_blank" rel="noopener">Jessy Li</a> on elaboration during text simplification.</p>
-<p>My research interests lie in natural language processing, particularly in natural language understanding, including problems such as commonsense reasoning, textual inference, and pragmatics.</p>
-
-    </div>
-
-    <div class="row">
-
-      
-
-      
-      <div class="col-md-7">
-        <div class="section-subheading">Education</div>
-        <ul class="ul-edu fa-ul mb-0">
-          
-          <li>
-            <i class="fa-li fas fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">PhD in Computer Science, 2021 -</p>
-              <p class="institution">University of Maryland, College Park</p>
-            </div>
-          </li>
-          
-          <li>
-            <i class="fa-li fas fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">MS in Computer Science, 2020</p>
-              <p class="institution">University of Texas at Austin</p>
-            </div>
-          </li>
-          
-          <li>
-            <i class="fa-li fas fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">BS in Computer Science, 2019</p>
-              <p class="institution">University of Texas at Austin</p>
-            </div>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-
-
-    
-
-    </div>
+  <!-- ==================== ABOUT (edit these paragraphs directly) ==================== -->
+  <section id="about">
+    <p>Hi there 👋! I'm a PhD student in the <a href="https://www.cs.umd.edu/">Department of Computer Science</a> at the <a href="https://umd.edu/">University of Maryland, College Park</a>, where I work with Profs. <a href="https://rudinger.github.io/">Rachel Rudinger</a> and <a href="http://users.umiacs.umd.edu/~jbg/">Jordan Boyd-Graber</a>. I'm a member of the <a href="https://wiki.umiacs.umd.edu/clip/index.php/Main_Page">Computational Linguistics and Information Processing (CLIP)</a> Lab in <a href="https://www.umiacs.umd.edu/">UMIACS</a>.</p>
+    <p>Before coming to Maryland, I worked as a Machine Learning Engineer at <a href="https://www.lyft.com/">Lyft</a> on the Applied Machine Learning team. Before that, I received my Bachelor's and Master's degrees in <a href="https://www.cs.utexas.edu/">Computer Science</a> from the <a href="https://www.utexas.edu/">University of Texas at Austin</a>, where I worked with <a href="https://jessyli.com/">Jessy Li</a> on elaboration during text simplification.</p>
+    <p>My research interests lie in natural language processing, particularly in natural language understanding, including problems such as commonsense reasoning, textual inference, and pragmatics.</p>
   </section>
 
-  
-  
-  
-<section id="news" class="home-section wg-blank" style="padding-top: 20px; padding-bottom: 20px;">
-  <div class="container">
-    <div class="row">
-      <div class="section-heading col-12 col-lg-4 mb-2 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-        <h1 class="mb-0">News</h1>
-      </div>
-      
-      <div class="col-12 col-lg-8">
-        <div class="news-container" style="height: 200px; overflow-y: auto; border: 1px solid #eee; padding: 10px; border-radius: 5px;">
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"> <span style="font-weight: bold; color: #707070;">August 2025:</span> Our paper from my internship at Adobe Research on more interpretable evaluation for text-to-SQL has been accepted to the Findings of EMNLP 2025!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"> <span style="font-weight: bold; color: #707070;">June 2025:</span> I'll be joining Amazon Alexa as an Applied Scientist Intern this summer in Bellevue, WA!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">May 2025:</span> Our paper on poorly-posed information-seeking questions has been accepted to ACL 2025!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">May 2025:</span> Our paper "NLI under the Microscope" received the Outstanding Paper Award at NAACL 2025!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">February 2025:</span> Our paper "NLI under the Microscope: What Atomic Decomposition Reveals" has been accepted to NAACL 2025!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">May 2024:</span> Our paper "Pregnant Questions: The Importance of Pragmatic Awareness in Maternal Health Question Answering" has been accepted to NAACL 2024!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">May 2024:</span> I'll be joining the document intelligence lab at Adobe Research as a Research Intern this summer in College Park, MD working with Ani Nenkova and Victor Soares-Bursztyn!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">January 2024:</span> Our paper on paraphrastic variability in NLU has been accepted to TACL!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">May 2023:</span> I'm joining Amazon AWS Research as an Applied Scientist Intern this summer in Santa Clara, CA!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">April 2022:</span> Our paper on revisiting partial input baselines in NLI has been accepted to NAACL 2022 main conference!
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">Fall 2021:</span> I joined the Department of Computer Science at the University of Maryland, College Park as a PhD student! I'll be working under Profs. Rachel Rudinger and Jordan Boyd-Graber.
-          </div>
-          <div class="news-item" style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-            <span style="font-weight: bold; color: #707070;">Aug 2021:</span> Our paper on elaborative simplification was accepted to the Findings of ACL 2021!
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  
-  
-  
-  <section id="publications" class="home-section wg-pages" style="padding-top: 20px; padding-bottom: 20px;">
-  <div class="home-section-bg">
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="section-heading col-12 col-lg-4 mb-2 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-        <h1 class="mb-0">Recent Publications</h1>
-      </div>
-      
-      <div class="col-12 col-lg-8">
-
-  <!-- <div class="alert alert-note">
-  <div>
-    Quickly discover relevant content by <a href="./publication/">filtering publications</a>.
-  </div>
-</div>
- -->
-
- <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span style="font-weight: bold; color: #d97857">DiscoTrace: Representing and Comparing Answering Strategies of Humans and LLMs in Information-Seeking Question Answering</span>
-  <br>
-  <span class="article-metadata li-cite-author">
-  <span class="author-highlighted" style="text-decoration: underline;">Neha Srikanth</span>, 
-  <span >Jordan Boyd-Graber</span>,
-  <span >Rachel Rudinger</span>
-  </span>
-  <br>
-  <em>Preprint 2026</em>
-  <br>
-  <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2604.15140" target="_blank" rel="noopener">
-  PDF
-</a>
-</div>
-
- <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span style="font-weight: bold; color: #d97857">SQLSpace: A Representation Space for Text-to-SQL to Discover and Mitigate Robustness Gaps</span>
-  <br>
-  <span class="article-metadata li-cite-author">
-  <span class="author-highlighted" style="text-decoration: underline;">Neha Srikanth</span>, 
-  <span>Victor Bursztyn</span>, 
-  <span >Puneet Mathur</span>,
-  <span >Ani Nenkova</span>
-  </span>
-  <br>
-  <em>EMNLP 2025 (Findings)</em>
-  <br>
-  <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://aclanthology.org/2025.findings-emnlp.81/" target="_blank" rel="noopener">
-  PDF
-</a>
-</div>
-
-<div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span style="font-weight: bold; color: #d97857">No Questions are Stupid, but some are Poorly Posed: Understanding Poorly-Posed Information-Seeking Questions</span>
-  <br>
-  <span class="article-metadata li-cite-author">
-  <span class="author-highlighted" style="text-decoration: underline;">Neha Srikanth</span>, 
-  <span>Rachel Rudinger</span>, 
-  <span >Jordan Boyd-Graber</span>
-  </span>
-  <br>
-  <em>ACL 2025 (Main Conference)</em>
-  <br>
-  <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://aclanthology.org/2025.acl-long.160/" target="_blank" rel="noopener">
-  PDF
-</a>
-
-<!-- <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2502.08080" target="_blank" rel="noopener">
-  PDF
-</a> -->
-
-  
-  
-</div>
-
-<div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span class="article-metadata li-cite-author">
-
-    <span style="font-weight: bold; color: #d97857;">Understanding Common Ground Misalignment in Goal-Oriented Dialog: A Case-Study with Ubuntu Chat Logs</span>
-    <br>
-    
-    <span >Rupak Sarkar</span>, 
-    <span class="author-highlighted" style="text-decoration: underline;">Neha Srikanth</span>, 
-    <span>Taylor Hudson</span>, 
-    <span> Rachel Rudinger</span>, 
-    <span>Claire Bonial</span>, 
-    <span >Philip Resnik</span>
-  </span>
-  <br>
-  <em>ACL 2025 (Main Conference)</em>
-  <br>
-  <a class="btn btn-outline-primary btn-page-header btn-sm" href="https://aclanthology.org/2025.acl-long.161/" target="_blank" rel="noopener">
-  PDF
-</a>
-
-</div>
-
-<div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span class="article-metadata li-cite-author">
-  <span style="font-weight: bold; color: #d97857;">NLI under the Microscope: What Atomic Decomposition Reveals</span>
-  <br>
-    
-  <span class="author-highlighted" style="text-decoration: underline;">
-      Neha Srikanth</span>, <span >
-      Rachel Rudinger</span>
-  </span>
-  <br>
-<em>NAACL 2025 (Main Conference)<span style="color: #FF00AA; font-style: italic;">🏆 Outstanding Paper Award</span></em>
-<br>
-
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2502.08080" target="_blank" rel="noopener">
-  PDF
-</a>
-
-  
-  
-</div>
-
- 
-
-
- <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-
-  <span class="article-metadata li-cite-author">
-  <span style="font-weight: bold; color: #d97857;">Pregnant Questions: The Importance of Pragmatic Awareness in Maternal Health Question Answering</span>
-  <br>
-
-  <span class="author-highlighted" style="text-decoration: underline;">
-      Neha Srikanth</span>, <span >
-      Rupak Sarkar</span>, <span >
-        Heran Mane</span>, <span >
-          Elizabeth Aparicio</span>, <span >
-            Quynh Nguyen</span>, <span >
-              Rachel Rudinger</span>, <span >
-                Jordan Boyd-Graber</span>
-  </span>
-  <br>
-  <em>NAACL 2024 (Main Conference)</em>
-  <br>
-
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://aclanthology.org/2024.naacl-long.403/" target="_blank" rel="noopener">
-  PDF
-</a>
-
-<a href="#" class="btn btn-outline-primary btn-page-header btn-sm js-cite-modal"
-        data-filename="/publication/pregnant-questions/cite.bib">
-  Cite
-</a>
-
-
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/nehasrikn/pragmatic-inferences-qa" target="_blank" rel="noopener">
-  Dataset
-</a>
-
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/pregnant-questions/poster.pdf" target="_blank" rel="noopener">
-  Poster
-</a>
-
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/pregnant-questions/slides.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-</p>
-
-</div>
-
-  
- <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  
-  
-
-  <span class="article-metadata li-cite-author">
-  <span style="font-weight: bold; color: #d97857;">How often are errors in natural language reasoning due to paraphrastic variability?</span>
-  <br>
-
-  <span class="author-highlighted" style="text-decoration: underline;">
-      Neha Srikanth</span>, <span >
-      Marine Carpuat</span>, <span >
-        Rachel Rudinger</span>
-  </span>
-  <br>
-  <em>TACL 2024</em>
-
-<br>
-
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2404.11717" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-<a href="#" class="btn btn-outline-primary btn-page-header btn-sm js-cite-modal"
-        data-filename="/publication/para-nlu/cite.bib">
-  Cite
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/nehasrikn/paraphrase-nlu" target="_blank" rel="noopener">
-  Dataset
-</a>
-  
-  
-</div> 
-
-
-<div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  <span class="article-metadata li-cite-author">
-  <span style="font-weight: bold; color: #d97857;">Partial-input baselines show that NLI models can ignore context, but they don&#39;t</span>
-  <br>
-    
-
-  <span class="author-highlighted" style="text-decoration: underline;">
-      Neha Srikanth</span>, <span >
-      Rachel Rudinger</span>
-  </span>
-  <br>
-  <em>NAACL 2022 (Main Conference)</em>
-  <br>
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2205.12181" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-<a href="#" class="btn btn-outline-primary btn-page-header btn-sm js-cite-modal"
-        data-filename="/publication/context-editing/cite.bib">
-  Cite
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/nehasrikn/context-editing" target="_blank" rel="noopener">
-  Dataset
-</a>
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/context-editing/poster.pdf" target="_blank" rel="noopener">
-  Poster
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/context-editing/slides.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
-</p>
-
-  
-  
-</div>
-
-  
-    
-
-
-<div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-  <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-
-  
-  
-
-  <span class="article-metadata li-cite-author">
-
-    <span style="font-weight: bold; color: #d97857;">Elaborative Simplification: Content Addition and Explanation Generation in Text Simplification</span>
-  <br>
-
-  <span class="author-highlighted" style="text-decoration: underline;">
-      Neha Srikanth</span>, <span >
-      Junyi Jessy Li</span>
-  </span>
-  <br>
-  <em>Findings of ACL 2021</em>.
-  <br>
-
-
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/pdf/2010.10035.pdf" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-<a href="#" class="btn btn-outline-primary btn-page-header btn-sm js-cite-modal"
-        data-filename="/publication/elab-simple/cite.bib">
-  Cite
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="https://github.com/nehasrikn/elaborative-simplification" target="_blank" rel="noopener">
-  Dataset
-</a>
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/elab-simple/poster.pdf" target="_blank" rel="noopener">
-  Poster
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header btn-sm" href="/publication/elab-simple/slides.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
-</p>
-
-  
-  
-</div>
-
-  
-
-  
-  
-  
-
-</div>
-
-
-    
-      </div>
-    
-
-    </div>
+  <!-- ==================== NEWS (rendered from the list at the bottom) ==================== -->
+  <section id="news">
+    <h2>News</h2>
+    <div class="news-box" id="news-list"></div>
   </section>
 
-  
-  
-  
-  
+  </div><!-- /intro-row -->
 
-  
-
-  
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-  <section id="contact" class="home-section wg-contact  "  >
-   <div class="home-section-bg " >
-     
-   </div>
-    <div class="container">
-
-    
-      <div class="row  ">
-      
-        
-          <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-            <h1 class="mb-0">Contact</h1>
-            
-          </div>
-        
-      
-    
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="col-12 col-lg-8">
-  
-
-  
-
-  <ul class="fa-ul">
-
-    
-    <li>
-      <i class="fa-li fas fa-envelope fa-2x" aria-hidden="true"></i>
-      <span id="person-email"><a href="mailto:nehasrik@umd.edu">nehasrik@umd.edu</a></span>
-    </li>
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <i class="fa-li fab fa-twitter fa-2x" aria-hidden="true"></i>
-      <a href="https://twitter.com/nehasrikanth" target="_blank" rel="noopener">nehasrikanth</a>
-    </li>
-    
-
-  </ul>
-
-  
-
-</div>
-
-
-    
-      </div>
-    
-
-    </div>
+  <!-- ==================== PUBLICATIONS (rendered from the list at the bottom) ==================== -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <div id="pub-list"></div>
   </section>
 
+  <!-- ==================== INDUSTRY RESEARCH (rendered from the list at the bottom) ==================== -->
+  <section id="industry">
+    <h2>Industry Research</h2>
+    <div id="industry-list"></div>
+  </section>
 
-
-  </div>
-
-  <div class="page-footer">
-    
-    
-    <div class="container">
-      <footer class="site-footer">
-
-  
-
-
-
-  
-
-  
-
-  
-  <p class="powered-by">
-    © 2022 Neha Srikanth
-  </p>
-  
-
-  
-  
-
-
-
-
-
-
-  <p class="powered-by">
-    
-    
-    
-      
-      
-      
-      
-      
-      
-      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
-    
-  </p>
-</footer>
-
-    </div>
-    
-  </div>
-
-  
-<div id="modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre><code class="tex hljs"></code></pre>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
-        </a>
-        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
-        </a>
-        <div id="modal-error"></div>
-      </div>
-    </div>
-  </div>
+  <footer>
+    © 2026 Neha Srikanth
+  </footer>
 </div>
 
-      
+<script>
+/* ================================================================
+   EDIT YOUR CONTENT HERE
+   ================================================================
+   NEWS: newest first. You can use HTML (links, <b>, etc.) in "text".
+   PUBLICATIONS: newest first. Your name is bolded automatically.
+   "links" can hold any label you like: PDF, Code, Dataset, Poster,
+   Slides, Demo... just add `Label: "url"`. Omit what you don't have.
+   "award" is optional and shows in crimson next to the venue.
+   INDUSTRY: internships, newest first. "details" and "location"
+   are optional. "icon" is a company domain (e.g. "adobe.com") —
+   the logo is fetched automatically from its favicon.
+   Venue icons: ACL/EMNLP/NAACL/TACL venues automatically get the
+   ACL Anthology icon.
+================================================================ */
 
-    
-    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+const NEWS = [
+  { date: "09/2026", text: `I proposed my thesis! You can read my proposal <a href="files/proposal/proposal.pdf">here</a>.` },
+  { date: "05/2026", text: `I'll be joining <b>Google Research</b> as a Research Intern this summer in Seattle, WA, working on realtime question answering!` },
+  { date: "08/2025", text: `Our paper from my internship at <b>Adobe Research</b> on more interpretable evaluation for text-to-SQL has been accepted to the <b>Findings of EMNLP 2025</b>!` },
+  { date: "06/2025", text: `I'll be joining <b>Amazon Alexa</b> as an Applied Scientist Intern this summer in Bellevue, WA!` },
+  { date: "05/2025", text: `Our paper on poorly-posed information-seeking questions has been accepted to <b>ACL 2025</b>!` },
+  { date: "05/2025", text: `Our paper "NLI under the Microscope" received the <span class="award">🏆 Outstanding Paper Award</span> at <b>NAACL 2025</b>!` },
+  { date: "02/2025", text: `Our paper "NLI under the Microscope: What Atomic Decomposition Reveals" has been accepted to <b>NAACL 2025</b>!` },
+  { date: "05/2024", text: `Our paper "Pregnant Questions: The Importance of Pragmatic Awareness in Maternal Health Question Answering" has been accepted to <b>NAACL 2024</b>!` },
+  { date: "05/2024", text: `I'll be joining the document intelligence lab at <b>Adobe Research</b> as a Research Intern this summer in College Park, MD, working with Ani Nenkova and Victor Soares-Bursztyn!` },
+  { date: "01/2024", text: `Our paper on paraphrastic variability in NLU has been accepted to <b>TACL</b>!` },
+  { date: "05/2023", text: `I'm joining <b>Amazon AWS Research</b> as an Applied Scientist Intern this summer in Santa Clara, CA!` },
+  { date: "04/2022", text: `Our paper on revisiting partial input baselines in NLI has been accepted to the <b>NAACL 2022</b> main conference!` },
+  { date: "09/2021", text: `I joined the Department of Computer Science at the <b>University of Maryland, College Park</b> as a PhD student! I'll be working under Profs. Rachel Rudinger and Jordan Boyd-Graber.` },
+  { date: "08/2021", text: `Our paper on elaborative simplification was accepted to the <b>Findings of ACL 2021</b>!` },
+];
 
-    
-    
-    
-      
-      
-        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
-      
+const PUBLICATIONS = [
+  {
+    title: "Sycophancy Undermines Epistemic Vigilance in Cooperative Vision-Language Tasks",
+    authors: "Rupak Sarkar, Neha Srikanth, Saloni Gupta, Claire Bonial, Philip Resnik, Rachel Rudinger",
+    venue: "Preprint 2026",
+    links: { PDF: "https://arxiv.org/abs/2607.29585" }
+  },
+  {
+    title: "DiscoTrace: Representing and Comparing Answering Strategies of Humans and LLMs in Information-Seeking Question Answering",
+    authors: "Neha Srikanth, Jordan Boyd-Graber, Rachel Rudinger",
+    venue: "Preprint 2026",
+    links: { PDF: "https://arxiv.org/abs/2604.15140" }
+  },
+  {
+    title: "SQLSpace: A Representation Space for Text-to-SQL to Discover and Mitigate Robustness Gaps",
+    authors: "Neha Srikanth, Victor Bursztyn, Puneet Mathur, Ani Nenkova",
+    venue: "EMNLP 2025 (Findings)",
+    links: { PDF: "https://aclanthology.org/2025.findings-emnlp.81/" }
+  },
+  {
+    title: "No Questions are Stupid, but some are Poorly Posed: Understanding Poorly-Posed Information-Seeking Questions",
+    authors: "Neha Srikanth, Rachel Rudinger, Jordan Boyd-Graber",
+    venue: "ACL 2025 (Main Conference)",
+    links: { PDF: "https://aclanthology.org/2025.acl-long.160/" }
+  },
+  {
+    title: "Understanding Common Ground Misalignment in Goal-Oriented Dialog: A Case-Study with Ubuntu Chat Logs",
+    authors: "Rupak Sarkar, Neha Srikanth, Taylor Hudson, Rachel Rudinger, Claire Bonial, Philip Resnik",
+    venue: "ACL 2025 (Main Conference)",
+    links: { PDF: "https://aclanthology.org/2025.acl-long.161/" }
+  },
+  {
+    title: "NLI under the Microscope: What Atomic Decomposition Reveals",
+    authors: "Neha Srikanth, Rachel Rudinger",
+    venue: "NAACL 2025 (Main Conference)",
+    award: "🏆 Outstanding Paper Award",
+    links: { PDF: "https://arxiv.org/abs/2502.08080" }
+  },
+  {
+    title: "Pregnant Questions: The Importance of Pragmatic Awareness in Maternal Health Question Answering",
+    authors: "Neha Srikanth, Rupak Sarkar, Heran Mane, Elizabeth Aparicio, Quynh Nguyen, Rachel Rudinger, Jordan Boyd-Graber",
+    venue: "NAACL 2024 (Main Conference)",
+    links: {
+      PDF: "https://aclanthology.org/2024.naacl-long.403/",
+      Dataset: "https://github.com/nehasrikn/pragmatic-inferences-qa",
+      Poster: "files/pregnant-questions/poster.pdf",
+      Slides: "files/pregnant-questions/slides.pdf"
+    }
+  },
+  {
+    title: "How often are errors in natural language reasoning due to paraphrastic variability?",
+    authors: "Neha Srikanth, Marine Carpuat, Rachel Rudinger",
+    venue: "TACL 2024",
+    links: {
+      PDF: "https://arxiv.org/abs/2404.11717",
+      Dataset: "https://github.com/nehasrikn/paraphrase-nlu"
+    }
+  },
+  {
+    title: "Partial-input baselines show that NLI models can ignore context, but they don't",
+    authors: "Neha Srikanth, Rachel Rudinger",
+    venue: "NAACL 2022 (Main Conference)",
+    links: {
+      PDF: "https://arxiv.org/abs/2205.12181",
+      Dataset: "https://github.com/nehasrikn/context-editing",
+      Poster: "files/context-editing/poster.pdf",
+      Slides: "files/context-editing/slides.pdf"
+    }
+  },
+  {
+    title: "Elaborative Simplification: Content Addition and Explanation Generation in Text Simplification",
+    authors: "Neha Srikanth, Junyi Jessy Li",
+    venue: "Findings of ACL 2021",
+    links: {
+      PDF: "https://arxiv.org/pdf/2010.10035.pdf",
+      Dataset: "https://github.com/nehasrikn/elaborative-simplification",
+      Poster: "files/elab-simple/poster.pdf",
+      Slides: "files/elab-simple/slides.pdf"
+    }
+  },
+];
 
-      
-      
+const INDUSTRY = [
+  {
+    company: "Google Research",
+    icon: "google.com",
+    role: "Research Intern",
+    date: "Summer 2026",
+    details: "Worked on realtime question answering.",
+  },
+  {
+    company: "Amazon Alexa",
+    icon: "amazon.com",
+    role: "Applied Scientist Intern",
+    location: "Bellevue, WA",
+    date: "Summer 2025",
+  },
+  {
+    company: "Adobe Research",
+    icon: "adobe.com",
+    role: "Research Intern, Document Intelligence Lab",
+    location: "College Park, MD",
+    date: "Summer 2024",
+    details: "Worked with Ani Nenkova and Victor Soares-Bursztyn on interpretable evaluation for text-to-SQL.",
+  },
+  {
+    company: "Amazon AWS Research",
+    icon: "amazon.com",
+    role: "Applied Scientist Intern",
+    location: "Santa Clara, CA",
+    date: "Summer 2023",
+  },
+];
 
-      
+/* ================================================================
+   Rendering code — you shouldn't need to touch anything below.
+================================================================ */
 
-      
-        
-        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
-        
-        
-        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
-        
-      
+const MY_NAME = "Neha Srikanth";
 
-    
+function boldMyName(authors) {
+  return authors.replace(MY_NAME, `<b>${MY_NAME}</b>`);
+}
 
-    
-    
-    
+/* Shows the ACL Anthology icon for ACL / EMNLP / NAACL / TACL venues */
+function venueHTML(venue) {
+  const isAnthology = /ACL|EMNLP/i.test(venue);
+  const icon = `<img class="venue-icon" src="https://www.google.com/s2/favicons?domain=aclanthology.org&sz=64" alt="ACL Anthology">`;
+  return `${isAnthology ? icon : ""}${venue}`;
+}
 
-    
-    
+document.getElementById("news-list").innerHTML = NEWS.map(item => `
+  <div class="news-item">
+    <span class="news-date">${item.date}</span>
+    <span>${item.text}</span>
+  </div>
+`).join("");
 
-    
-    
-    
-      
-      <script id="search-hit-fuse-template" type="text/x-template">
-        <div class="search-hit" id="summary-{{key}}">
-          <div class="search-hit-content">
-            <div class="search-hit-name">
-              <a href="{{relpermalink}}">{{title}}</a>
-              <div class="article-metadata search-hit-type">{{type}}</div>
-              <p class="search-hit-description">{{snippet}}</p>
-            </div>
-          </div>
-        </div>
-      </script>
-      
-        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
-      
-    
+document.getElementById("pub-list").innerHTML = PUBLICATIONS.map(pub => `
+  <div class="pub">
+    <p class="pub-title">${pub.title}</p>
+    <p class="pub-authors">${boldMyName(pub.authors)}</p>
+    <p class="pub-venue">${venueHTML(pub.venue)}${pub.award ? ` &nbsp;<span class="award">${pub.award}</span>` : ""}</p>
+    <div class="pub-links">
+      ${Object.entries(pub.links || {}).map(([label, url]) => `<a href="${url}">${label}</a>`).join("")}
+    </div>
+  </div>
+`).join("");
 
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-      
-      
-      
-      
-      
-      
-      
-    
-
-    
-
-    
-    
-    
-    <script id="page-data" type="application/json">{"use_headroom":false}</script>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      
-      
-    
-    
-    <script src="/en/js/wowchemy.min.247fd8f54253895301106e3006f53f38.js"></script>
-
-    
-
-
-
-
-
-
+document.getElementById("industry-list").innerHTML = INDUSTRY.map(job => `
+  <div class="role">
+    <div>
+      <p class="role-title">${job.icon ? `<img class="role-icon" src="https://www.google.com/s2/favicons?domain=${job.icon}&sz=64" alt="">` : ""}${job.company}</p>
+      <p class="role-detail">${job.role}${job.location ? `, ${job.location}` : ""}</p>
+      ${job.details ? `<p class="role-detail">${job.details}</p>` : ""}
+    </div>
+    <span class="role-date">${job.date}</span>
+  </div>
+`).join("");
+</script>
 </body>
 </html>
