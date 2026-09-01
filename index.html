@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- ============================================================
-  HOW TO UPDATE THIS SITE (everything lives in this one file)
-
-  1. BIO        → edit the paragraphs inside <section id="about">
-  2. NEWS       → add a line to the NEWS list at the bottom of
-                  this file (look for "EDIT YOUR CONTENT HERE")
-  3. PAPERS     → add an entry to the PUBLICATIONS list, same place
-  4. INTERNSHIPS→ add an entry to the INDUSTRY list, same place
-  5. PHOTO      → put a photo named "photo.jpg" next to this file
-                  and change the <img src="..."> in the header
-  6. Commit + push to your nehasrikn.github.io repo. Done.
-============================================================ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Neha Srikanth — PhD student in Computer Science at the University of Maryland, College Park.">
@@ -203,6 +191,15 @@
     vertical-align: -2px;
     margin-right: 0.35rem;
   }
+
+  /* small entity icons used in the intro and news text */
+  .inline-icon {
+    width: 15px;
+    height: 15px;
+    vertical-align: -2px;
+    margin-right: 0.3rem;
+    border-radius: 2px;
+  }
   .award {
     font-style: normal;
     color: #4d3d05;
@@ -303,8 +300,7 @@
 
   <!-- ==================== HEADER ==================== -->
   <header>
-    <!-- Replace src with "photo.jpg" once you add your own photo to the repo -->
-    <img src="https://nehasrikn.github.io/authors/neha/avatar_1_hu9aef00f1e61a813bb0bc9512366319ec_362471_270x270_fill_q75_lanczos_center.jpg" alt="Photo of Neha Srikanth">
+    <img src="photo.jpg" alt="Neha Srikanth">
     <div>
       <h1>Neha Srikanth</h1>
       <p class="tagline">PhD Student, <a href="https://www.cs.umd.edu/">Computer Science</a>, University of Maryland, College Park</p>
@@ -324,8 +320,8 @@
 
   <!-- ==================== ABOUT (edit these paragraphs directly) ==================== -->
   <section id="about">
-    <p>Hi there 👋! I'm a PhD student in the <a href="https://www.cs.umd.edu/">Department of Computer Science</a> at the <a href="https://umd.edu/">University of Maryland, College Park</a>, where I work with Profs. <a href="https://rudinger.github.io/">Rachel Rudinger</a> and <a href="http://users.umiacs.umd.edu/~jbg/">Jordan Boyd-Graber</a>. I'm a member of the <a href="https://wiki.umiacs.umd.edu/clip/index.php/Main_Page">Computational Linguistics and Information Processing (CLIP)</a> Lab in <a href="https://www.umiacs.umd.edu/">UMIACS</a>.</p>
-    <p>Before coming to Maryland, I worked as a Machine Learning Engineer at <a href="https://www.lyft.com/">Lyft</a> on the Applied Machine Learning team. Before that, I received my Bachelor's and Master's degrees in <a href="https://www.cs.utexas.edu/">Computer Science</a> from the <a href="https://www.utexas.edu/">University of Texas at Austin</a>, where I worked with <a href="https://jessyli.com/">Jessy Li</a> on elaboration during text simplification.</p>
+    <p>Hi there 👋! I'm a PhD student in the <a href="https://www.cs.umd.edu/">Department of Computer Science</a> at the <a href="https://umd.edu/"><img class="inline-icon" src="https://www.google.com/s2/favicons?domain=umd.edu&sz=64" alt="">University of Maryland, College Park</a>, where I work with Profs. <a href="https://rudinger.github.io/">Rachel Rudinger</a> and <a href="http://users.umiacs.umd.edu/~jbg/">Jordan Boyd-Graber</a>. I'm a member of the <a href="https://wiki.umiacs.umd.edu/clip/index.php/Main_Page">Computational Linguistics and Information Processing (CLIP)</a> Lab in <a href="https://www.umiacs.umd.edu/">UMIACS</a>.</p>
+    <p>Before coming to Maryland, I worked as a Machine Learning Engineer at <a href="https://www.lyft.com/">Lyft</a> on the Applied Machine Learning team. Before that, I received my Bachelor's and Master's degrees in <a href="https://www.cs.utexas.edu/">Computer Science</a> from the <a href="https://www.utexas.edu/"><img class="inline-icon" src="https://www.google.com/s2/favicons?domain=utexas.edu&sz=64" alt="">University of Texas at Austin</a>, where I worked with <a href="https://jessyli.com/">Jessy Li</a> on elaboration during text simplification.</p>
     <p>My research interests lie in natural language processing, particularly in natural language understanding, including problems such as commonsense reasoning, textual inference, and pragmatics.</p>
   </section>
 
@@ -367,8 +363,21 @@
    are optional. "icon" is a company domain (e.g. "adobe.com") —
    the logo is fetched automatically from its favicon.
    Venue icons: ACL/EMNLP/NAACL/TACL venues automatically get the
-   ACL Anthology icon.
+   ACL Anthology icon — in Publications AND in news text.
+   News entity icons: any name listed in ENTITY_ICONS below gets
+   its logo automatically wherever it appears in a news item. To
+   add one, add a line: ["Entity Name", "website-domain.com"],
 ================================================================ */
+
+const ENTITY_ICONS = [
+  ["Google Research", "google.com"],
+  ["Adobe Research", "adobe.com"],
+  ["Amazon Alexa", "amazon.com"],
+  ["Amazon AWS Research", "amazon.com"],
+  ["University of Maryland", "umd.edu"],
+  ["University of Texas at Austin", "utexas.edu"],
+  ["Lyft", "lyft.com"],
+];
 
 const NEWS = [
   { date: "09/2026", text: `I proposed my thesis! You can read my proposal <a href="files/proposal/proposal.pdf">here</a>.` },
@@ -389,16 +398,16 @@ const NEWS = [
 
 const PUBLICATIONS = [
   {
+    title: "DiscoTrace: Representing and Comparing Answering Strategies of Humans and LLMs in Information-Seeking Question Answering",
+    authors: "Neha Srikanth, Jordan Boyd-Graber, Rachel Rudinger",
+    venue: "EMNLP 2026 (Main Conference)",
+    links: { PDF: "https://arxiv.org/abs/2604.15140" }
+  },
+  {
     title: "Sycophancy Undermines Epistemic Vigilance in Cooperative Vision-Language Tasks",
     authors: "Rupak Sarkar, Neha Srikanth, Saloni Gupta, Claire Bonial, Philip Resnik, Rachel Rudinger",
     venue: "Preprint 2026",
     links: { PDF: "https://arxiv.org/abs/2607.29585" }
-  },
-  {
-    title: "DiscoTrace: Representing and Comparing Answering Strategies of Humans and LLMs in Information-Seeking Question Answering",
-    authors: "Neha Srikanth, Jordan Boyd-Graber, Rachel Rudinger",
-    venue: "Preprint 2026",
-    links: { PDF: "https://arxiv.org/abs/2604.15140" }
   },
   {
     title: "SQLSpace: A Representation Space for Text-to-SQL to Discover and Mitigate Robustness Gaps",
@@ -511,17 +520,32 @@ function boldMyName(authors) {
   return authors.replace(MY_NAME, `<b>${MY_NAME}</b>`);
 }
 
+function iconImg(domain, cls) {
+  return `<img class="${cls}" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="">`;
+}
+
+const VENUE_REGEX = /(Findings of )?\b(NAACL|TACL|EMNLP|ACL)\b/;
+
 /* Shows the ACL Anthology icon for ACL / EMNLP / NAACL / TACL venues */
 function venueHTML(venue) {
-  const isAnthology = /ACL|EMNLP/i.test(venue);
-  const icon = `<img class="venue-icon" src="https://www.google.com/s2/favicons?domain=aclanthology.org&sz=64" alt="ACL Anthology">`;
-  return `${isAnthology ? icon : ""}${venue}`;
+  const isAnthology = VENUE_REGEX.test(venue);
+  return `${isAnthology ? iconImg("aclanthology.org", "venue-icon") : ""}${venue}`;
+}
+
+/* Inserts entity + venue icons into a news item's text */
+function addNewsIcons(text) {
+  let out = text;
+  for (const [name, domain] of ENTITY_ICONS) {
+    out = out.replace(name, `${iconImg(domain, "inline-icon")}${name}`);
+  }
+  out = out.replace(VENUE_REGEX, match => `${iconImg("aclanthology.org", "inline-icon")}${match}`);
+  return out;
 }
 
 document.getElementById("news-list").innerHTML = NEWS.map(item => `
   <div class="news-item">
     <span class="news-date">${item.date}</span>
-    <span>${item.text}</span>
+    <span>${addNewsIcons(item.text)}</span>
   </div>
 `).join("");
 
