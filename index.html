@@ -70,20 +70,23 @@
     border-radius: 2px;
   }
 
-  /* ---------- header ---------- */
+  /* ---------- header (left column, above the bio) ---------- */
   header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2.75rem;
+    grid-area: head;
+    align-self: center;
   }
 
-  header img {
-    width: 138px;
-    height: 138px;
+  .photo-cell {
+    grid-area: photo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .photo-cell img {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    flex-shrink: 0;
   }
 
   h1 {
@@ -133,24 +136,44 @@
   #about p { margin: 0 0 1rem; }
   #about p:last-child { margin-bottom: 0; }
 
-  /* ---------- intro row: bio left, news right ---------- */
-  .intro-row {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
+  /* ---------- intro grid: name + bio left, photo + news right ---------- */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "head photo"
+      "bio  news";
+    column-gap: 3rem;
+    row-gap: 2.25rem;
   }
-  .intro-row #about { flex: 1 1 52%; }
-  .intro-row #news { flex: 1 1 48%; min-width: 0; }
-  .intro-row h2 { margin-top: 0; }
+  #about { grid-area: bio; }
+  #news {
+    grid-area: news;
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+  }
+  /* Fills the news cell so the box always ends where the bio ends */
+  .news-fill {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #news h2 { margin-top: 0; }
 
   /* ---------- news ---------- */
   .news-box {
     border: 1px solid var(--rule);
     border-radius: 8px;
     background: var(--soft);
-    max-height: 21rem;
     overflow-y: auto;
     padding: 0.35rem 1.1rem;
+  }
+  .news-fill .news-box {
+    flex: 1 1 auto;
+    min-height: 0;
   }
   .news-item {
     display: flex;
@@ -269,13 +292,23 @@
 
   /* ---------- mobile ---------- */
   @media (max-width: 760px) {
-    .intro-row { flex-direction: column; gap: 0; }
-    .intro-row h2 { margin-top: 2.5rem; }
-    .intro-row #news { width: 100%; }
+    .intro-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "head"
+        "photo"
+        "bio"
+        "news";
+      row-gap: 1.75rem;
+    }
+    #news { position: static; }
+    .news-fill { position: static; }
+    .news-fill .news-box { max-height: 21rem; }
   }
 
   @media (max-width: 560px) {
-    header { flex-direction: column; text-align: center; gap: 1.25rem; }
+    header { text-align: center; }
     .links { justify-content: center; }
     .news-item { flex-direction: column; gap: 0.1rem; }
     .news-date { flex-basis: auto; }
@@ -299,25 +332,25 @@
     <a href="#industry">Industry Research</a>
   </nav>
 
-  <!-- ==================== HEADER ==================== -->
+  <!-- ==================== INTRO GRID: name + bio left, photo + news right ==================== -->
+  <div class="intro-grid">
+
   <header>
-    <img src="files/photo.png" alt="Neha Srikanth">
-    <div>
-      <h1>Neha Srikanth</h1>
-      <p class="tagline">PhD Student, <a href="https://www.cs.umd.edu/">Computer Science</a>, University of Maryland, College Park</p>
-      <nav class="links" aria-label="Profile links">
-        <a href="mailto:nehasrik@umd.edu">Email</a>
-        <a href="https://drive.google.com/file/d/1u5LSHnLiCrgFt5oBMAZiq73ZK_U8OB5-/view?usp=sharing">CV</a>
-        <a href="https://scholar.google.com/citations?user=ZQwwr8cAAAAJ&hl=en&authuser=1">Google Scholar</a>
-        <a href="https://github.com/nehasrikn">GitHub</a>
-        <a href="https://twitter.com/nehasrikanth">Twitter</a>
-        <a href="https://www.linkedin.com/in/nehasrik/">LinkedIn</a>
-      </nav>
-    </div>
+    <h1>Neha Srikanth</h1>
+    <p class="tagline">PhD Student, <a href="https://www.cs.umd.edu/">Computer Science</a>, University of Maryland, College Park</p>
+    <nav class="links" aria-label="Profile links">
+      <a href="mailto:nehasrik@umd.edu">Email</a>
+      <a href="https://drive.google.com/file/d/1u5LSHnLiCrgFt5oBMAZiq73ZK_U8OB5-/view?usp=sharing">CV</a>
+      <a href="https://scholar.google.com/citations?user=ZQwwr8cAAAAJ&hl=en&authuser=1">Google Scholar</a>
+      <a href="https://github.com/nehasrikn">GitHub</a>
+      <a href="https://twitter.com/nehasrikanth">Twitter</a>
+      <a href="https://www.linkedin.com/in/nehasrik/">LinkedIn</a>
+    </nav>
   </header>
 
-  <!-- ==================== INTRO ROW: bio on the left, news on the right ==================== -->
-  <div class="intro-row">
+  <div class="photo-cell">
+    <img src="files/photo.png" alt="Photo of Neha Srikanth">
+  </div>
 
   <!-- ==================== ABOUT (edit these paragraphs directly) ==================== -->
   <section id="about">
@@ -328,11 +361,13 @@
 
   <!-- ==================== NEWS (rendered from the list at the bottom) ==================== -->
   <section id="news">
-    <h2>News</h2>
-    <div class="news-box" id="news-list"></div>
+    <div class="news-fill">
+      <h2>News</h2>
+      <div class="news-box" id="news-list"></div>
+    </div>
   </section>
 
-  </div><!-- /intro-row -->
+  </div><!-- /intro-grid -->
 
   <!-- ==================== PUBLICATIONS (rendered from the list at the bottom) ==================== -->
   <section id="publications">
@@ -382,7 +417,7 @@ const ENTITY_ICONS = [
 
 const NEWS = [
   { date: "05/2026", text: `I'll be joining <b>Google Research</b> as a Research Intern this summer in Seattle, WA, working on realtime question answering!` },
-  { date: "10/2025", text: `I completed my thesis proposal! You can read my proposal <a href="files/proposal/proposal.pdf">here</a>.` },
+  { date: "10/2025", text: `I completed my thesis proposal! You can read it <a href="files/proposal/proposal.pdf">here</a>.` },
   { date: "08/2025", text: `Our paper from my internship at <b>Adobe Research</b> on more interpretable evaluation for text-to-SQL has been accepted to the <b>Findings of EMNLP 2025</b>!` },
   { date: "06/2025", text: `I'll be joining <b>Amazon Alexa</b> as an Applied Scientist Intern this summer in Bellevue, WA!` },
   { date: "05/2025", text: `Our paper on poorly-posed information-seeking questions has been accepted to <b>ACL 2025</b>!` },
