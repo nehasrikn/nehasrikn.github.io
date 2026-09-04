@@ -387,23 +387,6 @@
 </div>
 
 <script>
-/* ================================================================
-   EDIT YOUR CONTENT HERE
-   ================================================================
-   NEWS: newest first. You can use HTML (links, <b>, etc.) in "text".
-   PUBLICATIONS: newest first. Your name is bolded automatically.
-   "links" can hold any label you like: PDF, Code, Dataset, Poster,
-   Slides, Demo... just add `Label: "url"`. Omit what you don't have.
-   "award" is optional and shows in crimson next to the venue.
-   INDUSTRY: internships, newest first. "details" and "location"
-   are optional. "icon" is a company domain (e.g. "adobe.com") —
-   the logo is fetched automatically from its favicon.
-   Venue icons: ACL/EMNLP/NAACL/TACL venues automatically get the
-   ACL Anthology icon — in Publications AND in news text.
-   News entity icons: any name listed in ENTITY_ICONS below gets
-   its logo automatically wherever it appears in a news item. To
-   add one, add a line: ["Entity Name", "website-domain.com"],
-================================================================ */
 
 const ENTITY_ICONS = [
   ["Google Research", "google.com"],
@@ -412,7 +395,6 @@ const ENTITY_ICONS = [
   ["Amazon AWS Research", "amazon.com"],
   ["University of Maryland", "umd.edu"],
   ["University of Texas at Austin", "utexas.edu"],
-  ["Lyft", "lyft.com"],
 ];
 
 const NEWS = [
@@ -546,9 +528,6 @@ const INDUSTRY = [
   },
 ];
 
-/* ================================================================
-   Rendering code — you shouldn't need to touch anything below.
-================================================================ */
 
 const MY_NAME = "Neha Srikanth";
 
@@ -564,8 +543,7 @@ const VENUE_REGEX = /(Findings of )?\b(NAACL|TACL|EMNLP|ACL)\b/;
 
 /* Shows the ACL Anthology icon for ACL / EMNLP / NAACL / TACL venues */
 function venueHTML(venue) {
-  const isAnthology = VENUE_REGEX.test(venue);
-  return `${isAnthology ? iconImg("aclanthology.org", "venue-icon") : ""}${venue}`;
+  return venue;
 }
 
 /* Inserts entity + venue icons into a news item's text */
@@ -574,7 +552,6 @@ function addNewsIcons(text) {
   for (const [name, domain] of ENTITY_ICONS) {
     out = out.replace(name, `${iconImg(domain, "inline-icon")}${name}`);
   }
-  out = out.replace(VENUE_REGEX, match => `${iconImg("aclanthology.org", "inline-icon")}${match}`);
   return out;
 }
 
